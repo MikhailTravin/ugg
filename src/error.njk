@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Ошибка</title>
+    {% include 'blocks/head.njk' %}
+</head>
+
+<body class="preload mp">
+    <div class="main-wrapper-outer">
+        {% include 'blocks/header.njk' %}
+        <main class="main">
+
+            <div class="block-error">
+                <img src="img/error.webp" alt="" class="block-error__bg1">
+                <div class="container">
+                    <div class="block-error__content">
+                        <div class="block-error__titles">
+                            <h1 class="title2">
+                                Страница не найдена!
+                            </h1>
+                            <p>
+                                Возможно она была удалена или никогда не существовала
+                            </p>
+                        </div>
+                        <div class="block-error__buttons">
+                            <a href="./" class="btn">Перейти в каталог</a>
+                            <a href="./" class="btn btn-grey">На главную</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="block-newsletter block-newsletter-white">
+                <div class="container">
+                    <div class="block-newsletter__content">
+                        <div class="block-newsletter__body">
+                            <div class="block-newsletter__titles">
+                                <div class="block-newsletter__title">
+                                    Получи скидку на первый заказ
+                                </div>
+                                <p>
+                                    Для этого нужно всего лишь подписаться на email-рассылку
+                                </p>
+                            </div>
+                        </div>
+                        <form action="#" class="block-newsletter__form">
+                            <input data-required autocomplete="off" type="text" name="form[]"
+                                placeholder="Введите ваш email">
+                            <button type="submit" class="btn">
+                                Подписаться
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        {% include 'blocks/footer.njk' %}
+    </div>
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>

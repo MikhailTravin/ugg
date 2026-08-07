@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Контакты</title>
+    {% include 'blocks/head.njk' %}
+</head>
+
+<body class="preload mp">
+    <div class="main-wrapper-outer">
+        {% include 'blocks/header.njk' %}
+        <main class="main">
+
+            <div class="breadcrumbs">
+                <div class="container">
+                    <ul>
+                        <li>
+                            <a href="#" class="home">
+                                <svg aria-hidden="true" width="16" height="14">
+                                    <use xlink:href="img/sprite.svg#home"></use>
+                                </svg>
+                            </a>
+                        </li>
+                        <li><span>Контакты</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="block-contacts">
+                <div class="container">
+                    <div class="block-contacts__content">
+                        <div class="block-title">
+                            <div class="block-title__top">
+                                <h1 class="title1">
+                                    Свяжитесь с нами
+                                </h1>
+                                <p>
+                                    Мы всегда рады помочь вам с выбором размера, оформлением заказа или решением
+                                    любых вопросов.
+                                    Выберите наиболее удобный для вас способ связи
+                                </p>
+                            </div>
+                        </div>
+                        <div class="block-contacts__body">
+                            <div class="block-contacts__column">
+                                <div class="block-contacts__icon">
+                                    <svg aria-hidden="true" width="24" height="24">
+                                        <use xlink:href="img/sprite.svg#phone"></use>
+                                    </svg>
+                                </div>
+                                <div class="block-contacts__item">
+                                    <div class="block-contacts__title">
+                                        Горячая линия:
+                                    </div>
+                                    <a href="tel:79882500408">+7 988 250-04-08</a>
+                                    <div class="block-contacts__text">
+                                        Ежедневно с 10:00 до 20:00(по московскому времени)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="block-contacts__column">
+                                <div class="block-contacts__icon">
+                                    <svg aria-hidden="true" width="24" height="24">
+                                        <use xlink:href="img/sprite.svg#chat"></use>
+                                    </svg>
+                                </div>
+                                <div class="block-contacts__item">
+                                    <div class="block-contacts__title">
+                                        Быстрые ответы:
+                                    </div>
+                                    <div class="block-contacts__text">
+                                        Наши менеджеры отвечают в мессенджерах в течение 5 минут
+                                    </div>
+                                    <div class="socials">
+                                        <a href="./">
+                                            <img src="img/icons/telegramm.svg" alt="">
+                                        </a>
+                                        <a href="./">
+                                            <img src="img/icons/max.svg" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="block-contacts__column">
+                                <div class="block-contacts__icon">
+                                    <svg aria-hidden="true" width="24" height="24">
+                                        <use xlink:href="img/sprite.svg#mail"></use>
+                                    </svg>
+                                </div>
+                                <div class="block-contacts__item">
+                                    <div class="block-contacts__title">
+                                        Для писем и предложений:
+                                    </div>
+                                    <a href="mailto:support@ugg-best.ru">support@ugg-best.ru</a>
+                                    <div class="block-contacts__text">
+                                        Служба поддержки и отдел контроля качества
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        {% include 'blocks/footer.njk' %}
+    </div>
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>
