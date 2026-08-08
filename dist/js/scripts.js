@@ -420,7 +420,26 @@ function formFieldsInit(options = { viewPass: true, autoHeight: false }) {
         targetElement.classList.remove('_form-focus');
         targetElement.parentElement.classList.remove('_form-focus');
       }
+      if (targetElement.value.trim()) {
+        targetElement.classList.add('filled');
+        targetElement.parentElement.classList.add('filled');
+      } else {
+        targetElement.classList.remove('filled');
+        targetElement.parentElement.classList.remove('filled');
+      }
       targetElement.hasAttribute('data-validate') ? formValidate.validateInput(targetElement) : null;
+    }
+  });
+  document.body.addEventListener("input", function (e) {
+    const targetElement = e.target;
+    if ((targetElement.tagName === 'INPUT' || targetElement.tagName === 'TEXTAREA')) {
+      if (targetElement.value.trim()) {
+        targetElement.classList.add('filled');
+        targetElement.parentElement.classList.add('filled');
+      } else {
+        targetElement.classList.remove('filled');
+        targetElement.parentElement.classList.remove('filled');
+      }
     }
   });
   if (options.viewPass) {
@@ -559,6 +578,7 @@ let formValidate = {
         el.parentElement.classList.remove('_form-success');
 
         el.parentElement.classList.remove('filled');
+        el.classList.remove('filled');
 
         formValidate.removeError(el);
 

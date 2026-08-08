@@ -77,6 +77,25 @@ a {
       margin-top: 1px;
     }
   }
+  &.btn-blue-border {
+    font-size: 14px;
+    line-height: 143%;
+    min-height: 60px;
+    color: var(--4875e4);
+    border: 2px solid var(--4875e4);
+    background-color: var(--ffffff);
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+    padding: 5px 20px;
+    @media (any-hover: hover) {
+      &:hover {
+        opacity: 1;
+        color: var(--ffffff);
+        background-color: var(--4875e4);
+      }
+    }
+  }
   &.btn-grey {
     color: var(--64748b);
     background-color: var(--f8fafc);
@@ -123,6 +142,9 @@ a {
   font-size: 56px;
   line-height: 107%;
   text-transform: uppercase;
+  @media (max-width: 768px) {
+    font-size: 36px;
+  }
 }
 .title2 {
   font-family: var(--second-family);
@@ -325,6 +347,85 @@ a {
         font-size: 16px;
         line-height: 144%;
       }
+    }
+  }
+
+  // .block-title__pic1
+
+  &__pic1 {
+    width: 100%;
+    height: auto;
+    max-height: 280px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+}
+
+.nav-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 35px;
+  margin-top: 63px;
+  @media (max-width: 992px) {
+    margin-top: 40px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 30px;
+    gap: 25px;
+  }
+  .btn {
+    width: 100%;
+  }
+}
+.pagging {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  // .pagging__item
+
+  &__item {
+    width: 30px;
+    flex: 0 0 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition:
+      color 0.3s,
+      background-color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--64748b);
+    font-family: var(--second-family);
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 143%;
+    text-transform: uppercase;
+    text-align: center;
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--221122);
+      }
+    }
+
+    // .pagging__item_active
+
+    &_active {
+      pointer-events: none;
+      background-color: var(--ffcc39);
+      color: var(--221122);
+    }
+
+    // .pagging__item_ellipsis
+
+    &_ellipsis {
+      width: 12px;
+      flex: 0 0 12px;
+      height: 20px;
+      pointer-events: none;
+      margin: 0px 5px;
     }
   }
 }
