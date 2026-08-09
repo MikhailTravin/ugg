@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Оформление заказа6</title>
+    {% include 'blocks/head.njk' %}
+</head>
+
+<body class="preload mp">
+    <div class="main-wrapper-outer">
+        {% include 'blocks/header.njk' %}
+        <main class="main">
+
+            <div class="block-order">
+                <div class="container">
+                    <a href="./" class="back">
+                        <div class="back__arrow">
+                            <svg aria-hidden="true" width="10" height="15">
+                                <use xlink:href="img/sprite.svg#arrow1"></use>
+                            </svg>
+                        </div>
+                        <span>Вернуться в корзину</span>
+                    </a>
+                    <div class="block-order__top">
+                        <h1 class="title1">Оформление заказа</h1>
+                        <div class="block-order__steps">
+                            <div class="block-order__step filled">
+                                <div class="block-order__icon">
+                                    <svg aria-hidden="true" width="16" height="14">
+                                        <use xlink:href="img/sprite.svg#check1"></use>
+                                    </svg>
+                                </div>
+                                <div class="block-order__title">
+                                    Вход
+                                </div>
+                                <div class="block-order__line"></div>
+                            </div>
+                            <div class="block-order__step filled">
+                                <div class="block-order__icon">
+                                    <svg aria-hidden="true" width="16" height="14">
+                                        <use xlink:href="img/sprite.svg#check1"></use>
+                                    </svg>
+                                </div>
+                                <div class="block-order__title">
+                                    Контакты
+                                </div>
+                                <div class="block-order__line"></div>
+                            </div>
+                            <div class="block-order__step filled">
+                                <div class="block-order__icon">
+                                    <svg aria-hidden="true" width="16" height="14">
+                                        <use xlink:href="img/sprite.svg#check1"></use>
+                                    </svg>
+                                </div>
+                                <div class="block-order__title">
+                                    Адрес
+                                </div>
+                                <div class="block-order__line"></div>
+                            </div>
+                            <div class="block-order__step filled">
+                                <div class="block-order__icon">
+                                    <svg aria-hidden="true" width="16" height="14">
+                                        <use xlink:href="img/sprite.svg#check1"></use>
+                                    </svg>
+                                </div>
+                                <div class="block-order__title">
+                                    Доставка
+                                </div>
+                                <div class="block-order__line"></div>
+                            </div>
+                            <div class="block-order__step filled">
+                                <div class="block-order__icon">
+                                    <svg aria-hidden="true" width="16" height="14">
+                                        <use xlink:href="img/sprite.svg#check1"></use>
+                                    </svg>
+                                </div>
+                                <div class="block-order__title">
+                                    Оплата
+                                </div>
+                                <div class="block-order__line"></div>
+                            </div>
+                            <div class="block-order__step active">
+                                <div class="block-order__icon">
+                                    6
+                                </div>
+                                <div class="block-order__title">
+                                    Подтверждение
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form action="#" class="block-order__content">
+                        <div class="block-order__titles">
+                            <div class="title3">
+                                Подтверждение заказа
+                            </div>
+                            <p>
+                                Проверьте все данные перед оформлением
+                            </p>
+                        </div>
+                        <div class="block-order__body">
+                            <div class="block-order-detail">
+                                <div class="block-order-detail__column">
+                                    <div class="block-order-detail__top">
+                                        <div class="block-order-detail__icon">
+                                            <svg aria-hidden="true" width="24" height="24">
+                                                <use xlink:href="img/sprite.svg#user2"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="block-order-detail__title">
+                                            Получатель
+                                        </div>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <div class="block-order-detail__name">
+                                                Имя и Фамилия
+                                            </div>
+                                            <div class="block-order-detail__line"></div>
+                                            <div class="block-order-detail__value">
+                                                Александр Александров
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="block-order-detail__name">
+                                                Номер телефона
+                                            </div>
+                                            <div class="block-order-detail__line"></div>
+                                            <div class="block-order-detail__value">
+                                                +7(988) 250-04-08
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="block-order-detail__column">
+                                    <div class="block-order-detail__top">
+                                        <div class="block-order-detail__icon">
+                                            <svg aria-hidden="true" width="24" height="24">
+                                                <use xlink:href="img/sprite.svg#delivery"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="block-order-detail__title">
+                                            Доставка
+                                        </div>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <div class="block-order-detail__name">
+                                                СДЭК Экспресс
+                                            </div>
+                                            <div class="block-order-detail__line"></div>
+                                            <div class="block-order-detail__value">
+                                                450 ₽
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="block-order-detail__name">
+                                                Курьерская доставка до двери
+                                            </div>
+                                            <div class="block-order-detail__line"></div>
+                                            <div class="block-order-detail__value">
+                                                2-3 дня
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="block-order-detail__column">
+                                    <div class="block-order-detail__top">
+                                        <div class="block-order-detail__icon">
+                                            <svg aria-hidden="true" width="22" height="22">
+                                                <use xlink:href="img/sprite.svg#wallet"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="block-order-detail__title">
+                                            Оплата
+                                        </div>
+                                    </div>
+                                    <p>
+                                        Банковская карта онлайн
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="block-order__cards">
+                                <div class="card-cart">
+                                    <div class="card-cart__left">
+                                        <a href="./" class="card-cart__image">
+                                            <img loading="lazy" src="img/products/image5.webp" alt="">
+                                        </a>
+                                        <div class="card-cart__item">
+                                            <div class="card-cart__top">
+                                                <a href="./" class="card-cart__title">
+                                                    UGG Lowmel Lo Campfire
+                                                </a>
+                                                <div class="card-cart__buttons">
+                                                    <div class="card-cart__button">
+                                                        <span>Размер:</span> 37
+                                                    </div>
+                                                    <div class="card-cart__button">
+                                                        <span>Цвет:</span> Песочный
+                                                    </div>
+                                                    <div class="card-cart__col"><span>x</span> 1 шт</div>
+                                                </div>
+                                            </div>
+                                            <div class="card-cart__right">
+                                                <div class="card-cart__total">
+                                                    <div class="card-cart__sum">8 990 ₽</div>
+                                                    <button type="button" class="card-cart__delete">
+                                                        <svg aria-hidden="true" width="10" height="10">
+                                                            <use xlink:href="img/sprite.svg#close"></use>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-cart__right">
+                                        <div class="card-cart__total">
+                                            <div class="card-cart__sum">8 990 ₽</div>
+                                            <button type="button" class="card-cart__delete">
+                                                <svg aria-hidden="true" width="10" height="10">
+                                                    <use xlink:href="img/sprite.svg#close"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-cart">
+                                    <div class="card-cart__left">
+                                        <a href="./" class="card-cart__image">
+                                            <img loading="lazy" src="img/products/image6.webp" alt="">
+                                        </a>
+                                        <div class="card-cart__item">
+                                            <div class="card-cart__top">
+                                                <a href="./" class="card-cart__title">
+                                                    UGG Goldenstar Clog Sand
+                                                </a>
+                                                <div class="card-cart__buttons">
+                                                    <div class="card-cart__button">
+                                                        <span>Размер:</span> 40
+                                                    </div>
+                                                    <div class="card-cart__button">
+                                                        <span>Цвет:</span> Серый
+                                                    </div>
+                                                    <div class="card-cart__col"><span>x</span> 2 шт</div>
+                                                </div>
+                                            </div>
+                                            <div class="card-cart__right">
+                                                <div class="card-cart__total">
+                                                    <div class="card-cart__sum">14 900 ₽</div>
+                                                    <button type="button" class="card-cart__delete">
+                                                        <svg aria-hidden="true" width="10" height="10">
+                                                            <use xlink:href="img/sprite.svg#close"></use>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-cart__right">
+                                        <div class="card-cart__total">
+                                            <div class="card-cart__sum">14 900 ₽</div>
+                                            <button type="button" class="card-cart__delete">
+                                                <svg aria-hidden="true" width="10" height="10">
+                                                    <use xlink:href="img/sprite.svg#close"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-cart">
+                                    <div class="card-cart__left">
+                                        <a href="./" class="card-cart__image">
+                                            <img loading="lazy" src="img/products/image7.webp" alt="">
+                                        </a>
+                                        <div class="card-cart__item">
+                                            <div class="card-cart__top">
+                                                <a href="./" class="card-cart__title">
+                                                    UGG Lowmel Lo Campfire
+                                                </a>
+                                                <div class="card-cart__buttons">
+                                                    <div class="card-cart__button">
+                                                        <span>Размер:</span> 38
+                                                    </div>
+                                                    <div class="card-cart__button">
+                                                        <span>Цвет:</span> Черный
+                                                    </div>
+                                                    <div class="card-cart__col"><span>x</span> 1 шт</div>
+                                                </div>
+                                            </div>
+                                            <div class="card-cart__right">
+                                                <div class="card-cart__total">
+                                                    <div class="card-cart__sum">12 500 ₽</div>
+                                                    <button type="button" class="card-cart__delete">
+                                                        <svg aria-hidden="true" width="10" height="10">
+                                                            <use xlink:href="img/sprite.svg#close"></use>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-cart__right">
+                                        <div class="card-cart__total">
+                                            <div class="card-cart__sum">12 500 ₽</div>
+                                            <button type="button" class="card-cart__delete">
+                                                <svg aria-hidden="true" width="10" height="10">
+                                                    <use xlink:href="img/sprite.svg#close"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cart-detail">
+                                <div class="cart-detail__content">
+                                    <div class="cart-detail__top">
+                                        <ul>
+                                            <li>
+                                                <div class="cart-detail__name">
+                                                    Стоимость товаров
+                                                </div>
+                                                <div class="cart-detail__line"></div>
+                                                <div class="cart-detail__value">
+                                                    36 390 ₽
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="cart-detail__name">
+                                                    Доставка СДЭК
+                                                </div>
+                                                <div class="cart-detail__line"></div>
+                                                <div class="cart-detail__value">
+                                                    450 ₽
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="cart-detail__total">
+                                        <span>Итого к оплате</span>
+                                        <div class="cart-detail__sum">36 840 ₽</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block-order__buttons">
+                            <a href="./" class="btn btn-grey">Назад</a>
+                            <button type="submit" class="btn">
+                                <svg aria-hidden="true" width="16" height="14">
+                                    <use xlink:href="img/sprite.svg#check1"></use>
+                                </svg>
+                                <span>Подтвердить заказ</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </main>
+        {% include 'blocks/footer.njk' %}
+    </div>
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Корзина</title>
+    {% include 'blocks/head.njk' %}
+</head>
+
+<body class="preload mp">
+    <div class="main-wrapper-outer">
+        {% include 'blocks/header.njk' %}
+        <main class="main">
+
+            <div class="breadcrumbs">
+                <div class="container">
+                    <ul>
+                        <li>
+                            <a href="#" class="home">
+                                <svg aria-hidden="true" width="16" height="14">
+                                    <use xlink:href="img/sprite.svg#home"></use>
+                                </svg>
+                            </a>
+                        </li>
+                        <li><span>Корзина</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="block-cart">
+                <div class="container">
+                    <div class="block-cart__title">
+                        <h1 class="title1">Корзина покупок</h1>
+                        <span>(3 товара)</span>
+                    </div>
+                    <div class="block-cart__content">
+                        <div class="block-cart__body">
+                            <div class="block-cart__table">
+                                <div class="block-cart__titles">
+                                    <div class="block-cart__left">
+                                        <div class="block-cart__name">Товар</div>
+                                    </div>
+                                    <div class="block-cart__right">
+                                        <div class="block-cart__name">Кол-во</div>
+                                        <div class="block-cart__name">Цена</div>
+                                        <div class="block-cart__name">Итого</div>
+                                    </div>
+                                </div>
+                                <div class="block-cart__cards">
+                                    <div class="card-cart">
+                                        <div class="card-cart__left">
+                                            <a href="./" class="card-cart__image">
+                                                <img loading="lazy" src="img/products/image5.webp" alt="">
+                                            </a>
+                                            <div class="card-cart__item">
+                                                <div class="card-cart__top">
+                                                    <a href="./" class="card-cart__title">
+                                                        UGG Lowmel Lo Campfire
+                                                    </a>
+                                                    <div class="card-cart__buttons">
+                                                        <div class="card-cart__price">
+                                                            8 990 ₽
+                                                        </div>
+                                                        <div class="card-cart__button">
+                                                            <span>Размер:</span> 37
+                                                        </div>
+                                                        <div class="card-cart__button">
+                                                            <span>Цвет:</span> Песочный
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-cart__right">
+                                                    <div data-quantity class="quantity">
+                                                        <button data-quantity-minus type="button"
+                                                            class="quantity__button quantity__button_plus">
+                                                            <svg aria-hidden="true" width="12" height="2">
+                                                                <use xlink:href="img/sprite.svg#minus"></use>
+                                                            </svg>
+                                                        </button>
+                                                        <div class="quantity__input">
+                                                            <input data-quantity-value autocomplete="off" type="text"
+                                                                name="form[]" value="1">
+                                                        </div>
+                                                        <button data-quantity-plus type="button"
+                                                            class="quantity__button quantity__button_minus">
+                                                            <svg aria-hidden="true" width="12" height="12">
+                                                                <use xlink:href="img/sprite.svg#plus"></use>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                    <div class="card-cart__total">
+                                                        <div class="card-cart__sum">8 990 ₽</div>
+                                                        <button type="button" class="card-cart__delete">
+                                                            <svg aria-hidden="true" width="10" height="10">
+                                                                <use xlink:href="img/sprite.svg#close"></use>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-cart__right">
+                                            <div data-quantity class="quantity">
+                                                <button data-quantity-minus type="button"
+                                                    class="quantity__button quantity__button_plus">
+                                                    <svg aria-hidden="true" width="12" height="2">
+                                                        <use xlink:href="img/sprite.svg#minus"></use>
+                                                    </svg>
+                                                </button>
+                                                <div class="quantity__input">
+                                                    <input data-quantity-value autocomplete="off" type="text"
+                                                        name="form[]" value="1">
+                                                </div>
+                                                <button data-quantity-plus type="button"
+                                                    class="quantity__button quantity__button_minus">
+                                                    <svg aria-hidden="true" width="12" height="12">
+                                                        <use xlink:href="img/sprite.svg#plus"></use>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="card-cart__price">
+                                                8 990 ₽
+                                            </div>
+                                            <div class="card-cart__total">
+                                                <div class="card-cart__sum">8 990 ₽</div>
+                                                <button type="button" class="card-cart__delete">
+                                                    <svg aria-hidden="true" width="10" height="10">
+                                                        <use xlink:href="img/sprite.svg#close"></use>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-cart">
+                                        <div class="card-cart__left">
+                                            <a href="./" class="card-cart__image">
+                                                <img loading="lazy" src="img/products/image6.webp" alt="">
+                                            </a>
+                                            <div class="card-cart__item">
+                                                <div class="card-cart__top">
+                                                    <a href="./" class="card-cart__title">
+                                                        UGG Goldenstar Clog Sand
+                                                    </a>
+                                                    <div class="card-cart__buttons">
+                                                        <div class="card-cart__price">
+                                                            7 450 ₽
+                                                        </div>
+                                                        <div class="card-cart__button">
+                                                            <span>Размер:</span> 40
+                                                        </div>
+                                                        <div class="card-cart__button">
+                                                            <span>Цвет:</span> Серый
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-cart__right">
+                                                    <div data-quantity class="quantity">
+                                                        <button data-quantity-minus type="button"
+                                                            class="quantity__button quantity__button_plus">
+                                                            <svg aria-hidden="true" width="12" height="2">
+                                                                <use xlink:href="img/sprite.svg#minus"></use>
+                                                            </svg>
+                                                        </button>
+                                                        <div class="quantity__input">
+                                                            <input data-quantity-value autocomplete="off" type="text"
+                                                                name="form[]" value="2">
+                                                        </div>
+                                                        <button data-quantity-plus type="button"
+                                                            class="quantity__button quantity__button_minus">
+                                                            <svg aria-hidden="true" width="12" height="12">
+                                                                <use xlink:href="img/sprite.svg#plus"></use>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                    <div class="card-cart__total">
+                                                        <div class="card-cart__sum">14 900 ₽</div>
+                                                        <button type="button" class="card-cart__delete">
+                                                            <svg aria-hidden="true" width="10" height="10">
+                                                                <use xlink:href="img/sprite.svg#close"></use>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-cart__right">
+                                            <div data-quantity class="quantity">
+                                                <button data-quantity-minus type="button"
+                                                    class="quantity__button quantity__button_plus">
+                                                    <svg aria-hidden="true" width="12" height="2">
+                                                        <use xlink:href="img/sprite.svg#minus"></use>
+                                                    </svg>
+                                                </button>
+                                                <div class="quantity__input">
+                                                    <input data-quantity-value autocomplete="off" type="text"
+                                                        name="form[]" value="2">
+                                                </div>
+                                                <button data-quantity-plus type="button"
+                                                    class="quantity__button quantity__button_minus">
+                                                    <svg aria-hidden="true" width="12" height="12">
+                                                        <use xlink:href="img/sprite.svg#plus"></use>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="card-cart__price">
+                                                7 450 ₽
+                                            </div>
+                                            <div class="card-cart__total">
+                                                <div class="card-cart__sum">14 900 ₽</div>
+                                                <button type="button" class="card-cart__delete">
+                                                    <svg aria-hidden="true" width="10" height="10">
+                                                        <use xlink:href="img/sprite.svg#close"></use>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-cart">
+                                        <div class="card-cart__left">
+                                            <a href="./" class="card-cart__image">
+                                                <img loading="lazy" src="img/products/image7.webp" alt="">
+                                            </a>
+                                            <div class="card-cart__item">
+                                                <div class="card-cart__top">
+                                                    <a href="./" class="card-cart__title">
+                                                        UGG Lowmel Lo Campfire
+                                                    </a>
+                                                    <div class="card-cart__buttons">
+                                                        <div class="card-cart__price">
+                                                            12 500 ₽
+                                                        </div>
+                                                        <div class="card-cart__button">
+                                                            <span>Размер:</span> 38
+                                                        </div>
+                                                        <div class="card-cart__button">
+                                                            <span>Цвет:</span> Черный
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-cart__right">
+                                                    <div data-quantity class="quantity">
+                                                        <button data-quantity-minus type="button"
+                                                            class="quantity__button quantity__button_plus">
+                                                            <svg aria-hidden="true" width="12" height="2">
+                                                                <use xlink:href="img/sprite.svg#minus"></use>
+                                                            </svg>
+                                                        </button>
+                                                        <div class="quantity__input">
+                                                            <input data-quantity-value autocomplete="off" type="text"
+                                                                name="form[]" value="1">
+                                                        </div>
+                                                        <button data-quantity-plus type="button"
+                                                            class="quantity__button quantity__button_minus">
+                                                            <svg aria-hidden="true" width="12" height="12">
+                                                                <use xlink:href="img/sprite.svg#plus"></use>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                    <div class="card-cart__total">
+                                                        <div class="card-cart__sum">12 500 ₽</div>
+                                                        <button type="button" class="card-cart__delete">
+                                                            <svg aria-hidden="true" width="10" height="10">
+                                                                <use xlink:href="img/sprite.svg#close"></use>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-cart__right">
+                                            <div data-quantity class="quantity">
+                                                <button data-quantity-minus type="button"
+                                                    class="quantity__button quantity__button_plus">
+                                                    <svg aria-hidden="true" width="12" height="2">
+                                                        <use xlink:href="img/sprite.svg#minus"></use>
+                                                    </svg>
+                                                </button>
+                                                <div class="quantity__input">
+                                                    <input data-quantity-value autocomplete="off" type="text"
+                                                        name="form[]" value="1">
+                                                </div>
+                                                <button data-quantity-plus type="button"
+                                                    class="quantity__button quantity__button_minus">
+                                                    <svg aria-hidden="true" width="12" height="12">
+                                                        <use xlink:href="img/sprite.svg#plus"></use>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="card-cart__price">
+                                                12 500 ₽
+                                            </div>
+                                            <div class="card-cart__total">
+                                                <div class="card-cart__sum">12 500 ₽</div>
+                                                <button type="button" class="card-cart__delete">
+                                                    <svg aria-hidden="true" width="10" height="10">
+                                                        <use xlink:href="img/sprite.svg#close"></use>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-spollers class="block-cart-coupon">
+                                <button data-spoller type="button" class="block-cart-coupon__button _spoller-active">
+                                    <span class="block-cart-coupon__title">
+                                        <svg aria-hidden="true" width="23" height="23">
+                                            <use xlink:href="img/sprite.svg#sale"></use>
+                                        </svg>
+                                        <span>Использовать купон / промокод</span>
+                                    </span>
+                                </button>
+                                <div class="block-cart-coupon__body">
+                                    <form action="#" class="block-cart-coupon__form">
+                                        <div class="block-cart-coupon__input">
+                                            <input autocomplete="off" type="text" name="form[]"
+                                                placeholder="Введите промокод">
+                                        </div>
+                                        <button type="submit" class="btn btn-blue-border">
+                                            Применить
+                                        </button>
+                                    </form>
+                                    <div class="block-cart-coupon__text">
+                                        Попробуйте: SALE10
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-detail">
+                            <div class="cart-detail__content">
+                                <div class="cart-detail__top">
+                                    <div class="cart-detail__title">
+                                        Итого
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <div class="cart-detail__name">
+                                                Предварительная сумма
+                                            </div>
+                                            <div class="cart-detail__line"></div>
+                                            <div class="cart-detail__value">
+                                                8 990 ₽
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="cart-detail__name">
+                                                Доставка
+                                            </div>
+                                            <div class="cart-detail__line"></div>
+                                            <div class="cart-detail__value">
+                                                <span>Рассчитывается далее</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="cart-detail__total">
+                                    <span>К оплате</span>
+                                    <div class="cart-detail__sum">36 390 ₽</div>
+                                </div>
+                                <div class="cart-detail__bottom">
+                                    <a href="./" class="btn">Оформление заказа</a>
+                                    <div class="cart-detail__text">
+                                        Нажимая кнопку, вы переходите к оформлению
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% include 'blocks/newsletter.njk' %}
+
+        </main>
+        {% include 'blocks/footer.njk' %}
+    </div>
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>

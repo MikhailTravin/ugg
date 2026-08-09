@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Оформление заказа5</title>
+    {% include 'blocks/head.njk' %}
+</head>
+
+<body class="preload mp">
+    <div class="main-wrapper-outer">
+        {% include 'blocks/header.njk' %}
+        <main class="main">
+
+            <div class="block-order">
+                <div class="container">
+                    <a href="./" class="back">
+                        <div class="back__arrow">
+                            <svg aria-hidden="true" width="10" height="15">
+                                <use xlink:href="img/sprite.svg#arrow1"></use>
+                            </svg>
+                        </div>
+                        <span>Вернуться в корзину</span>
+                    </a>
+                    <div class="block-order__top">
+                        <h1 class="title1">Оформление заказа</h1>
+                        <div class="block-order__steps">
+                            <div class="block-order__step filled">
+                                <div class="block-order__icon">
+                                    <svg aria-hidden="true" width="16" height="14">
+                                        <use xlink:href="img/sprite.svg#check1"></use>
+                                    </svg>
+                                </div>
+                                <div class="block-order__title">
+                                    Вход
+                                </div>
+                                <div class="block-order__line"></div>
+                            </div>
+                            <div class="block-order__step filled">
+                                <div class="block-order__icon">
+                                    <svg aria-hidden="true" width="16" height="14">
+                                        <use xlink:href="img/sprite.svg#check1"></use>
+                                    </svg>
+                                </div>
+                                <div class="block-order__title">
+                                    Контакты
+                                </div>
+                                <div class="block-order__line"></div>
+                            </div>
+                            <div class="block-order__step filled">
+                                <div class="block-order__icon">
+                                    <svg aria-hidden="true" width="16" height="14">
+                                        <use xlink:href="img/sprite.svg#check1"></use>
+                                    </svg>
+                                </div>
+                                <div class="block-order__title">
+                                    Адрес
+                                </div>
+                                <div class="block-order__line"></div>
+                            </div>
+                            <div class="block-order__step filled">
+                                <div class="block-order__icon">
+                                    <svg aria-hidden="true" width="16" height="14">
+                                        <use xlink:href="img/sprite.svg#check1"></use>
+                                    </svg>
+                                </div>
+                                <div class="block-order__title">
+                                    Доставка
+                                </div>
+                                <div class="block-order__line"></div>
+                            </div>
+                            <div class="block-order__step active">
+                                <div class="block-order__icon">
+                                    5
+                                </div>
+                                <div class="block-order__title">
+                                    Оплата
+                                </div>
+                                <div class="block-order__line"></div>
+                            </div>
+                            <div class="block-order__step">
+                                <div class="block-order__icon">
+                                    6
+                                </div>
+                                <div class="block-order__title">
+                                    Подтверждение
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form action="#" class="block-order__content">
+                        <div class="block-order__titles">
+                            <div class="title3">
+                                Способ оплаты
+                            </div>
+                            <p>
+                                Выберите удобный способ оплаты
+                            </p>
+                        </div>
+                        <div class="block-order__body">
+                            <div class="options options-grid2">
+                                <label class="options__item">
+                                    <input checked hidden class="options__input" type="radio" value="1" name="option">
+                                    <span class="options__label">
+                                        <span class="options__icon">
+                                            <svg aria-hidden="true" width="22" height="18">
+                                                <use xlink:href="img/sprite.svg#card1"></use>
+                                            </svg>
+                                        </span>
+                                        <span class="options__text">
+                                            <span class="options__title">
+                                                Оплата банковской картой онлайн
+                                            </span>
+                                            <p>
+                                                Visa, MasterCard, МИР
+                                            </p>
+                                        </span>
+                                        <span class="options__check"></span>
+                                </label>
+                                <label class="options__item">
+                                    <input hidden class="options__input" type="radio" value="2" name="option">
+                                    <span class="options__label">
+                                        <span class="options__icon">
+                                            <svg aria-hidden="true" width="22" height="16">
+                                                <use xlink:href="img/sprite.svg#money"></use>
+                                            </svg>
+                                        </span>
+                                        <span class="options__text">
+                                            <span class="options__title">
+                                                Оплата при получении
+                                            </span>
+                                            <p>
+                                                Наличными или картой курьеру / в пункте выдачи
+                                            </p>
+                                        </span>
+                                        <span class="options__check"></span>
+                                </label>
+                            </div>
+                            <div class="form">
+                                <div class="form__input">
+                                    <label for="textarea1">Комментарии к заказу</label>
+                                    <textarea id="textarea1" class="input textarea"
+                                        placeholder="Например: “Прошу привезти после 18:00”"></textarea>
+                                </div>
+                            </div>
+                            <label class="checkbox3">
+                                <input data-required class="checkbox3__input" type="checkbox" value="1"
+                                    name="checkbox3">
+                                <span class="checkbox3__label">
+                                    <span class="checkbox3__icon">
+                                        <svg aria-hidden="true" width="14" height="13">
+                                            <use xlink:href="img/sprite.svg#check1"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="checkbox3__text">
+                                        <p>
+                                            Я согласен с условиями <a href="./">Политики конфиденциальности</a> и
+                                            обработкой персональных
+                                            данных
+                                        </p>
+                                    </span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="block-order__buttons">
+                            <a href="./" class="btn btn-grey">Назад</a>
+                            <button type="submit" class="btn">Продолжить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </main>
+        {% include 'blocks/footer.njk' %}
+    </div>
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>
