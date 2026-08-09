@@ -972,665 +972,313 @@ if (cards.length) {
 }
 
 //========================================================================================================================================================
-//========================================================================================================================================================
 
-
-//Звездный рейтинг
-function formRating() {
-  const ratings = document.querySelectorAll('[data-rating]');
-  if (ratings) {
-    ratings.forEach(rating => {
-      const ratingValue = +rating.dataset.ratingValue;
-      const ratingSize = +rating.dataset.ratingSize ? +rating.dataset.ratingSize : 5;
-      formRatingInit(rating, ratingSize);
-      ratingValue ? formRatingSet(rating, ratingValue) : null;
-      document.addEventListener('click', formRatingAction);
+function rangeInit() {
+  const ratingFilter = document.querySelector('.block-catalog-filter__range');
+  if (ratingFilter) {
+    noUiSlider.create(ratingFilter, {
+      start: [0, 165760],
+      connect: true,
+      range: {
+        'min': [0],
+        'max': [600000]
+      },
+      format: wNumb({
+        decimals: 0,
+        thousand: ' ',
+      })
     });
-  }
 
-  function formRatingAction(e) {
-    const targetElement = e.target;
-    if (targetElement.closest('.rating__input')) {
-      const currentElement = targetElement.closest('.rating__input');
-      const ratingValue = +currentElement.value;
-      const rating = currentElement.closest('.rating');
-      const ratingSet = rating.dataset.rating === 'set';
-      ratingSet ? formRatingGet(rating, ratingValue) : null;
-    }
-  }
+    const priceStart = document.getElementById('price-start');
+    const priceEnd = document.getElementById('price-end');
 
-  function formRatingInit(rating, ratingSize) {
-    let ratingItems = ``;
-    for (let index = 0; index < ratingSize; index++) {
-      index === 0 ? ratingItems += `<div class="rating__items">` : null;
-      ratingItems += `
-                <label class="rating__item">
-                    <input class="rating__input" type="radio" name="rating" value="${index + 1}">
-                </label>`;
-      index === ratingSize ? ratingItems += `</div">` : null;
-    }
-    rating.insertAdjacentHTML("beforeend", ratingItems);
-  }
+    priceStart.addEventListener('change', function () {
+      ratingFilter.noUiSlider.set([this.value, null]);
+    });
 
-  function formRatingGet(rating, ratingValue) {
-    const resultRating = ratingValue;
-    formRatingSet(rating, resultRating);
-  }
+    priceEnd.addEventListener('change', function () {
+      ratingFilter.noUiSlider.set([null, this.value]);
+    });
 
-  function formRatingSet(rating, value) {
-    const ratingItems = rating.querySelectorAll('.rating__item');
-    const resultFullItems = parseInt(value);
-    const resultPartItem = value - resultFullItems;
-
-    rating.hasAttribute('data-rating-title') ? rating.title = value : null;
-
-    ratingItems.forEach((ratingItem, index) => {
-      ratingItem.classList.remove('rating__item--active');
-      ratingItem.querySelector('span') ? ratingItems[index].querySelector('span').remove() : null;
-
-      if (index <= (resultFullItems - 1)) {
-        ratingItem.classList.add('rating__item--active');
-      }
-      if (index === resultFullItems && resultPartItem) {
-        ratingItem.insertAdjacentHTML("beforeend", `<span style="width:${resultPartItem * 100}%"></span>`);
+    ratingFilter.noUiSlider.on('update', function (values, handle) {
+      var value = values[handle];
+      if (handle) {
+        priceEnd.value = value;
+      } else {
+        priceStart.value = value;
       }
     });
   }
-
-  function formRatingSend() {
-  }
-}
-formRating();
+};
+rangeInit();
 
 //========================================================================================================================================================
 
-//Попап
-class Popup {
-  constructor(options) {
-    let config = {
-      logging: true,
-      init: true,
-      attributeOpenButton: "data-popup",
-      attributeCloseButton: "data-close",
-      fixElementSelector: "[data-lp]",
-      youtubeAttribute: "data-popup-youtube",
-      youtubePlaceAttribute: "data-popup-youtube-place",
-      setAutoplayYoutube: true,
-      classes: {
-        popup: "popup",
-        popupContent: "popup__content",
-        popupActive: "popup_show",
-        bodyActive: "popup-show"
-      },
-      focusCatch: true,
-      closeEsc: true,
-      bodyLock: true,
-      hashSettings: {
-        goHash: true
-      },
-      on: {
-        beforeOpen: function () { },
-        afterOpen: function () { },
-        beforeClose: function () { },
-        afterClose: function () { }
-      }
-    };
-    this.youTubeCode;
-    this.isOpen = false;
-    this.targetOpen = {
-      selector: false,
-      element: false
-    };
-    this.previousOpen = {
-      selector: false,
-      element: false
-    };
-    this.lastClosed = {
-      selector: false,
-      element: false
-    };
-    this._dataValue = false;
-    this.hash = false;
-    this._reopen = false;
-    this._selectorOpen = false;
-    this.lastFocusEl = false;
-    this._focusEl = ["a[href]", 'input:not([disabled]):not([type="hidden"]):not([aria-hidden])', "button:not([disabled]):not([aria-hidden])", "select:not([disabled]):not([aria-hidden])", "textarea:not([disabled]):not([aria-hidden])", "area[href]", "iframe", "object", "embed", "[contenteditable]", '[tabindex]:not([tabindex^="-"])'];
-    this.options = {
-      ...config,
-      ...options,
-      classes: {
-        ...config.classes,
-        ...options?.classes
-      },
-      hashSettings: {
-        ...config.hashSettings,
-        ...options?.hashSettings
-      },
-      on: {
-        ...config.on,
-        ...options?.on
-      }
-    };
-    this.bodyLock = false;
-    this.previousMenuState = false;
-    this.options.init ? this.initPopups() : null;
-  }
-  initPopups() {
-    this.eventsPopup();
-  }
-  eventsPopup() {
-    document.addEventListener("click", function (e) {
-      const buttonOpen = e.target.closest(`[${this.options.attributeOpenButton}]`);
-      if (buttonOpen) {
-        e.preventDefault();
-        this._dataValue = buttonOpen.getAttribute(this.options.attributeOpenButton) ? buttonOpen.getAttribute(this.options.attributeOpenButton) : "error";
-        this.youTubeCode = buttonOpen.getAttribute(this.options.youtubeAttribute) ? buttonOpen.getAttribute(this.options.youtubeAttribute) : null;
-        if ("error" !== this._dataValue) {
-          if (!this.isOpen) this.lastFocusEl = buttonOpen;
-          this.targetOpen.selector = `${this._dataValue}`;
-          this._selectorOpen = true;
-          this.open();
-          return;
-        }
-        return;
-      }
-      const buttonClose = e.target.closest(`[${this.options.attributeCloseButton}]`);
-      if (buttonClose || !e.target.closest(`.${this.options.classes.popupContent}`) && this.isOpen) {
-        e.preventDefault();
-        this.close();
-        return;
-      }
-    }.bind(this));
-    document.addEventListener("keydown", function (e) {
-      if (this.options.closeEsc && 27 == e.which && "Escape" === e.code && this.isOpen) {
-        e.preventDefault();
-        this.close();
-        return;
-      }
-      if (this.options.focusCatch && 9 == e.which && this.isOpen) {
-        this._focusCatch(e);
-        return;
-      }
-    }.bind(this));
-    if (this.options.hashSettings.goHash) {
-      window.addEventListener("hashchange", function () {
-        if (window.location.hash) this._openToHash(); else this.close(this.targetOpen.selector);
-      }.bind(this));
-      window.addEventListener("load", function () {
-        if (window.location.hash) this._openToHash();
-      }.bind(this));
-    }
-  }
-  open(selectorValue) {
-    if (bodyLockStatus) {
-      this.bodyLock = document.documentElement.classList.contains("lock") && !this.isOpen ? true : false;
-      if (selectorValue && "string" === typeof selectorValue && "" !== selectorValue.trim()) {
-        this.targetOpen.selector = selectorValue;
-        this._selectorOpen = true;
-      }
-      if (this.isOpen) {
-        this._reopen = true;
-        this.close();
-      }
-      if (!this._selectorOpen) this.targetOpen.selector = this.lastClosed.selector;
-      if (!this._reopen) this.previousActiveElement = document.activeElement;
-      this.targetOpen.element = document.querySelector(this.targetOpen.selector);
-      if (this.targetOpen.element) {
-        this.previousMenuState = document.documentElement.classList.contains('menu-open');
-        if (this.previousMenuState) {
-          if (typeof menuClose === 'function') {
-            menuClose();
-          } else {
-            document.documentElement.classList.remove("menu-open");
-            if (typeof bodyUnlock === 'function') bodyUnlock();
-          }
-        }
-        if (this.youTubeCode) {
-          const codeVideo = this.youTubeCode;
-          const urlVideo = `https://www.youtube.com/embed/${codeVideo}?rel=0&showinfo=0&autoplay=1`;
-          const iframe = document.createElement("iframe");
-          iframe.setAttribute("allowfullscreen", "");
-          const autoplay = this.options.setAutoplayYoutube ? "autoplay;" : "";
-          iframe.setAttribute("allow", `${autoplay}; encrypted-media`);
-          iframe.setAttribute("src", urlVideo);
-          if (!this.targetOpen.element.querySelector(`[${this.options.youtubePlaceAttribute}]`)) {
-            this.targetOpen.element.querySelector(".popup__text").setAttribute(`${this.options.youtubePlaceAttribute}`, "");
-          }
-          this.targetOpen.element.querySelector(`[${this.options.youtubePlaceAttribute}]`).appendChild(iframe);
-        }
-        const videoElement = this.targetOpen.element.querySelector("video");
-        if (videoElement) {
-          videoElement.muted = true;
-          videoElement.currentTime = 0;
-          videoElement.play().catch((e => console.error("Autoplay error:", e)));
-        }
-        if (this.options.hashSettings.location) {
-          this._getHash();
-          this._setHash();
-        }
-        this.options.on.beforeOpen(this);
-        document.dispatchEvent(new CustomEvent("beforePopupOpen", {
-          detail: {
-            popup: this
-          }
-        }));
-        this.targetOpen.element.classList.add(this.options.classes.popupActive);
-        document.documentElement.classList.add(this.options.classes.bodyActive);
-        if (!this._reopen) !this.bodyLock ? bodyLock() : null; else this._reopen = false;
-        this.targetOpen.element.setAttribute("aria-hidden", "false");
-        this.previousOpen.selector = this.targetOpen.selector;
-        this.previousOpen.element = this.targetOpen.element;
-        this._selectorOpen = false;
-        this.isOpen = true;
-        this.options.on.afterOpen(this);
-        document.dispatchEvent(new CustomEvent("afterPopupOpen", {
-          detail: {
-            popup: this
-          }
-        }));
-      }
-    }
-  }
-  close(selectorValue) {
-    if (selectorValue && "string" === typeof selectorValue && "" !== selectorValue.trim()) this.previousOpen.selector = selectorValue;
-    if (!this.isOpen || !bodyLockStatus) return;
-    this.options.on.beforeClose(this);
-    document.dispatchEvent(new CustomEvent("beforePopupClose", {
-      detail: {
-        popup: this
-      }
-    }));
-    if (this.youTubeCode) if (this.targetOpen.element.querySelector(`[${this.options.youtubePlaceAttribute}]`)) this.targetOpen.element.querySelector(`[${this.options.youtubePlaceAttribute}]`).innerHTML = "";
-    this.previousOpen.element.classList.remove(this.options.classes.popupActive);
-    const videoElement = this.previousOpen.element.querySelector("video");
-    if (videoElement) videoElement.pause();
-    this.previousOpen.element.setAttribute("aria-hidden", "true");
-    if (!this._reopen) {
-      document.documentElement.classList.remove(this.options.classes.bodyActive);
-      !this.bodyLock ? bodyUnlock() : null;
-      this.isOpen = false;
-      if (this.previousMenuState) {
-        if (typeof menuOpen === 'function') {
-          menuOpen();
-        } else {
-          document.documentElement.classList.add("menu-open");
-          if (typeof bodyLock === 'function') bodyLock();
-        }
-      }
-    }
-    document.dispatchEvent(new CustomEvent("afterPopupClose", {
-      detail: {
-        popup: this
-      }
-    }));
-    this.options.on.afterClose(this);
-  }
-  _getHash() {
-    if (this.options.hashSettings.location) this.hash = this.targetOpen.selector.includes("#") ? this.targetOpen.selector : this.targetOpen.selector.replace(".", "#");
-  }
-  _openToHash() {
-    let classInHash = document.querySelector(`.${window.location.hash.replace("#", "")}`) ? `.${window.location.hash.replace("#", "")}` : document.querySelector(`${window.location.hash}`) ? `${window.location.hash}` : null;
-    const buttons = document.querySelector(`[${this.options.attributeOpenButton} = "${classInHash}"]`) ? document.querySelector(`[${this.options.attributeOpenButton} = "${classInHash}"]`) : document.querySelector(`[${this.options.attributeOpenButton} = "${classInHash.replace(".", "#")}"]`);
-    if (buttons && classInHash) this.open(classInHash);
-  }
-  _setHash() {
-    history.pushState("", "", this.hash);
-  }
-  _removeHash() {
-    history.pushState("", "", window.location.href.split("#")[0]);
-  }
-  _focusCatch(e) {
-    const focusable = this.targetOpen.element.querySelectorAll(this._focusEl);
-    const focusArray = Array.prototype.slice.call(focusable);
-    const focusedIndex = focusArray.indexOf(document.activeElement);
-    if (e.shiftKey && 0 === focusedIndex) {
-      focusArray[focusArray.length - 1].focus();
-      e.preventDefault();
-    }
-    if (!e.shiftKey && focusedIndex === focusArray.length - 1) {
-      focusArray[0].focus();
-      e.preventDefault();
-    }
-  }
-}
-modules_flsModules.popup = new Popup({});
+function initDesktopFilter() {
+  const filterColumns = document.querySelectorAll('.block-catalog-filter__column');
+  const resetButton = document.querySelector('.btn-reset');
+  const ratingFilter = document.querySelector('.block-catalog-filter__range');
+  const filterColumnsBlock = document.querySelector('.block-catalog-filter__columns');
 
-function menuOpen() {
-  bodyLock();
-  document.documentElement.classList.add("menu-open");
-}
-function menuClose() {
-  bodyUnlock();
-  document.documentElement.classList.remove("menu-open");
-}
-
-//========================================================================================================================================================
-
-
-
-//========================================================================================================================================================
-
-const mapElement = document.querySelector('#map');
-if (mapElement) {
-  const mapObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        mapObserver.unobserve(mapElement);
-
-        if (typeof ymaps === 'undefined') {
-          const script = document.createElement('script');
-          script.src = 'https://api-maps.yandex.ru/2.1/?lang=ru_RU';
-          script.async = true;
-
-          script.onload = () => {
-            if (typeof ymaps !== 'undefined') {
-              ymaps.ready(safeInitMap);
-            }
-          };
-
-          script.onerror = () => {
-            console.error('Yandex Maps failed to load');
-          };
-
-          document.head.appendChild(script);
-        } else {
-          ymaps.ready(safeInitMap);
-        }
-      }
-    });
-  }, {
-    rootMargin: '0px 0px 200px 0px'
-  });
-
-  mapObserver.observe(mapElement);
-}
-function safeInitMap() {
-  const mapElement = document.getElementById('map');
-  if (!mapElement || mapElement.dataset.initialized === 'true') return;
-
-  try {
-    const preview = mapElement.querySelector('.map-preview');
-    if (preview) preview.remove();
-
-    const myMap = new ymaps.Map('map', {
-      center: [55.990755, 35.667689],
-      zoom: 17,
-      controls: ['zoomControl']
-    });
-
-    // Метка
-    const placemark = new ymaps.Placemark([55.990755, 35.667689], {}, {
-      iconLayout: 'default#image',
-      iconImageHref: 'img/map.webp',
-      iconImageSize: [80, 80],
-      iconImageOffset: [-40, -40]
-    });
-
-    myMap.geoObjects.add(placemark);
-    mapElement.dataset.initialized = 'true';
-
-  } catch (error) {
-    console.error("Map init error:", error);
-  }
-}
-
-//========================================================================================================================================================
-
-//Табы
-function tabs() {
-  const tabs = document.querySelectorAll('[data-tabs]');
-  let tabsActiveHash = [];
-
-  if (tabs.length > 0) {
-    const hash = getHash();
-    if (hash && hash.startsWith('tab-')) {
-      tabsActiveHash = hash.replace('tab-', '').split('-');
-    }
-    tabs.forEach((tabsBlock, index) => {
-      tabsBlock.classList.add('_tab-init');
-      tabsBlock.setAttribute('data-tabs-index', index);
-      tabsBlock.addEventListener("click", setTabsAction);
-      initTabs(tabsBlock);
-    });
-
-    let mdQueriesArray = dataMediaQueries(tabs, "tabs");
-    if (mdQueriesArray && mdQueriesArray.length) {
-      mdQueriesArray.forEach(mdQueriesItem => {
-        mdQueriesItem.matchMedia.addEventListener("change", function () {
-          setTitlePosition(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia);
-        });
-        setTitlePosition(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia);
-      });
-    }
-  }
-
-  function setTitlePosition(tabsMediaArray, matchMedia) {
-    tabsMediaArray.forEach(tabsMediaItem => {
-      tabsMediaItem = tabsMediaItem.item;
-      let tabsTitles = tabsMediaItem.querySelector('[data-tabs-titles]');
-      let tabsTitleItems = tabsMediaItem.querySelectorAll('[data-tabs-title]');
-      let tabsContent = tabsMediaItem.querySelector('[data-tabs-body]');
-      let tabsContentItems = tabsMediaItem.querySelectorAll('[data-tabs-item]');
-      tabsTitleItems = Array.from(tabsTitleItems).filter(item => item.closest('[data-tabs]') === tabsMediaItem);
-      tabsContentItems = Array.from(tabsContentItems).filter(item => item.closest('[data-tabs]') === tabsMediaItem);
-      tabsContentItems.forEach((tabsContentItem, index) => {
-        if (matchMedia.matches) {
-          tabsContent.append(tabsTitleItems[index]);
-          tabsContent.append(tabsContentItem);
-          tabsMediaItem.classList.add('_tab-spoller');
-        } else {
-          tabsTitles.append(tabsTitleItems[index]);
-          tabsMediaItem.classList.remove('_tab-spoller');
-        }
-      });
-    });
-  }
-
-  function initTabs(tabsBlock) {
-    let tabsTitles = tabsBlock.querySelectorAll('[data-tabs-titles]>*');
-    let tabsContent = tabsBlock.querySelectorAll('[data-tabs-body]>*');
-    const tabsBlockIndex = tabsBlock.dataset.tabsIndex;
-    const tabsActiveHashBlock = tabsActiveHash[0] == tabsBlockIndex;
-
-    if (tabsActiveHashBlock) {
-      const tabsActiveTitle = tabsBlock.querySelector('[data-tabs-titles]>._tab-active');
-      tabsActiveTitle ? tabsActiveTitle.classList.remove('_tab-active') : null;
-    }
-    if (tabsContent.length) {
-      tabsContent.forEach((tabsContentItem, index) => {
-        tabsTitles[index].setAttribute('data-tabs-title', '');
-        tabsContentItem.setAttribute('data-tabs-item', '');
-
-        if (tabsActiveHashBlock && index == tabsActiveHash[1]) {
-          tabsTitles[index].classList.add('_tab-active');
-        }
-        tabsContentItem.hidden = !tabsTitles[index].classList.contains('_tab-active');
-      });
-    }
-    setTabsStatus(tabsBlock);
-  }
-
-  function setTabsStatus(tabsBlock) {
-    let tabsTitles = tabsBlock.querySelectorAll('[data-tabs-title]');
-    let tabsContent = tabsBlock.querySelectorAll('[data-tabs-item]');
-    const tabsBlockIndex = tabsBlock.dataset.tabsIndex;
-
-    function isTabsAnimate(tabsBlock) {
-      if (tabsBlock.hasAttribute('data-tabs-animate')) {
-        return tabsBlock.dataset.tabsAnimate > 0 ? Number(tabsBlock.dataset.tabsAnimate) : 500;
-      }
-      return false;
-    }
-    const tabsBlockAnimate = isTabsAnimate(tabsBlock);
-
-    if (tabsContent.length > 0) {
-      const isHash = tabsBlock.hasAttribute('data-tabs-hash');
-      tabsContent = Array.from(tabsContent).filter(item => item.closest('[data-tabs]') === tabsBlock);
-      tabsTitles = Array.from(tabsTitles).filter(item => item.closest('[data-tabs]') === tabsBlock);
-      tabsContent.forEach((tabsContentItem, index) => {
-        if (tabsTitles[index].classList.contains('_tab-active')) {
-          if (tabsBlockAnimate) {
-            _slideDown(tabsContentItem, tabsBlockAnimate);
-          } else {
-            tabsContentItem.hidden = false;
-          }
-          if (isHash && !tabsContentItem.closest('.popup')) {
-            setHash(`tab-${tabsBlockIndex}-${index}`);
-          }
-        } else {
-          if (tabsBlockAnimate) {
-            _slideUp(tabsContentItem, tabsBlockAnimate);
-          } else {
-            tabsContentItem.hidden = true;
-          }
-        }
-      });
-    }
-  }
-
-  function setTabsAction(e) {
-    const el = e.target;
-    if (el.closest('[data-tabs-title]')) {
-      const tabTitle = el.closest('[data-tabs-title]');
-      const tabsBlock = tabTitle.closest('[data-tabs]');
-      if (!tabTitle.classList.contains('_tab-active') && !tabsBlock.querySelector('._slide')) {
-        let tabActiveTitle = tabsBlock.querySelectorAll('[data-tabs-title]._tab-active');
-        tabActiveTitle = Array.from(tabActiveTitle).filter(item => item.closest('[data-tabs]') === tabsBlock);
-        if (tabActiveTitle.length) tabActiveTitle[0].classList.remove('_tab-active');
-        tabTitle.classList.add('_tab-active');
-        setTabsStatus(tabsBlock);
-      }
-      e.preventDefault();
-    }
-  }
-}
-tabs();
-
-//========================================================================================================================================================
-
-if (document.querySelector('.images-product')) {
-  const thumbsSwiper = new Swiper('.images-product__thumb', {
-    observer: true,
-    observeParents: true,
-    slidesPerView: 2.5,
-    spaceBetween: 10,
-    speed: 400,
-    preloadImages: true,
-    breakpoints: {
-      768: {
-        slidesPerView: 3, spaceBetween: 10,
-      },
-    },
-  });
-
-  const mainThumbsSwiper = new Swiper('.images-product__slider', {
-    thumbs: {
-      swiper: thumbsSwiper
-    },
-    observer: true,
-    observeParents: true,
-    slidesPerView: 1,
-    spaceBetween: 20,
-    speed: 400,
-    preloadImages: true,
-    navigation: {
-      prevEl: '.images-product__arrow-prev',
-      nextEl: '.images-product__arrow-next',
-    },
-  });
-}
-
-if (document.querySelector('.block-see-also__slider')) {
-  const seeAlsoSwiper = new Swiper('.block-see-also__slider', {
-    observer: true,
-    observeParents: true,
-    slidesPerView: 'auto',
-    spaceBetween: 10,
-    speed: 400,
-    preloadImages: true,
-    navigation: {
-      prevEl: '.block-see-also__arrow-prev',
-      nextEl: '.block-see-also__arrow-next',
-    },
-    breakpoints: {
-      992: {
-        slidesPerView: 3,
-        spaceBetween: 10,
-      },
-      1200: {
-        slidesPerView: 4,
-        spaceBetween: 22,
-      },
-    },
-  });
-}
-
-//========================================================================================================================================================
-
-
-const filterContainer = document.querySelector('.block-catalog-filter');
-if (filterContainer) {
-
-  const filterButton = document.querySelector('.block-catalog-filter__button');
+  const filterTitle = document.querySelector('.block-catalog-filter__title');
+  const filterClose = document.querySelector('.block-catalog-filter__close');
   const filterBody = document.querySelector('.block-catalog-filter__body');
-  const closeButton = document.querySelector('.block-catalog-filter__close');
+  const filterContent = document.querySelector('.block-catalog-filter__content');
+
+  let activeColumnIndex = null;
+
+  function isDesktop() {
+    return window.innerWidth >= 1331;
+  }
 
   function isMobile() {
-    return window.innerWidth <= 992;
+    return window.innerWidth <= 1330;
   }
 
-  function openFilter() {
-    if (!isMobile()) return;
-    document.documentElement.classList.add('filter-open');
+  function getActiveColumnIndex() {
+    let index = null;
+    filterColumns.forEach((col, idx) => {
+      if (col.classList.contains('active')) {
+        index = idx;
+      }
+    });
+    return index;
   }
 
-  function closeFilter() {
+  function saveCurrentState() {
+    activeColumnIndex = getActiveColumnIndex();
+    return activeColumnIndex;
+  }
+
+  function closeAllColumns() {
+    filterColumns.forEach((column) => {
+      column.classList.remove('active');
+    });
+    activeColumnIndex = null;
+  }
+
+  function openColumn(index) {
+    if (index === null || !filterColumns[index]) return;
+
+    const column = filterColumns[index];
+
+    closeAllColumns();
+
+    column.classList.add('active');
+    activeColumnIndex = index;
+  }
+
+  function openMobileFilter() {
+    if (isMobile()) {
+      document.documentElement.classList.add('filter-open');
+    }
+  }
+
+  function closeMobileFilter() {
     document.documentElement.classList.remove('filter-open');
   }
 
-  filterButton.addEventListener('click', function (e) {
-    e.preventDefault();
-    e.stopPropagation();
+  function resetSystemSpollers() {
+    if (!filterColumnsBlock) return;
 
-    if (!isMobile()) return;
+    const spollerTitles = filterColumnsBlock.querySelectorAll('[data-spoller]');
 
-    if (document.documentElement.classList.contains('filter-open')) {
-      closeFilter();
-    } else {
-      openFilter();
+    spollerTitles.forEach(title => {
+      title.classList.remove('_spoller-active');
+
+      const item = title.closest('.spollers__item, .cabinet-orders-spollers__item, .menu-catalog__item');
+      if (item) {
+        item.classList.remove('_spoller-active');
+      }
+
+      if (title.nextElementSibling) {
+        title.nextElementSibling.hidden = false;
+        title.nextElementSibling.style.display = '';
+        title.nextElementSibling.style.height = '';
+        title.nextElementSibling.style.overflow = '';
+      }
+    });
+
+    if (filterColumnsBlock) {
+      filterColumnsBlock.classList.remove('_spoller-init');
     }
+  }
+
+  filterColumns.forEach((column, index) => {
+    const button = column.querySelector('.block-catalog-filter__button');
+    if (!button) return;
+
+    button.addEventListener('click', function (e) {
+      if (!isDesktop()) {
+        return;
+      }
+
+      const parentColumn = this.closest('.block-catalog-filter__column');
+
+      if (parentColumn.classList.contains('active')) {
+        parentColumn.classList.remove('active');
+        activeColumnIndex = null;
+      } else {
+        openColumn(index);
+      }
+    });
   });
 
-  closeButton.addEventListener('click', function (e) {
-    e.stopPropagation();
-    if (document.documentElement.classList.contains('filter-open')) {
-      closeFilter();
-    }
-  });
+  if (filterTitle) {
+    filterTitle.addEventListener('click', function (e) {
+      if (isMobile()) {
+        e.stopPropagation();
+        openMobileFilter();
+      }
+    });
+  }
+
+  if (filterClose) {
+    filterClose.addEventListener('click', function (e) {
+      e.stopPropagation();
+      closeMobileFilter();
+    });
+  }
 
   document.addEventListener('click', function (e) {
     if (!isMobile()) return;
-    if (!document.documentElement.classList.contains('filter-open')) return;
 
-    const isClickInsideBody = filterBody.contains(e.target);
-    const isClickOnButton = filterButton.contains(e.target);
+    const isClickInsideFilter = filterContent && filterContent.contains(e.target);
+    const isClickOnTitle = filterTitle && filterTitle.contains(e.target);
 
-    if (!isClickInsideBody && !isClickOnButton) {
-      closeFilter();
+    if (isClickOnTitle) return;
+    if (isClickInsideFilter) return;
+
+    closeMobileFilter();
+  });
+
+  if (filterBody) {
+    filterBody.addEventListener('click', function (e) {
+      e.stopPropagation();
+    });
+  }
+
+  function resetFilter() {
+    const allCheckboxes = document.querySelectorAll('.block-catalog-filter__columns input[type="checkbox"]');
+    allCheckboxes.forEach(checkbox => {
+      checkbox.checked = false;
+    });
+
+    const priceStart = document.getElementById('price-start');
+    const priceEnd = document.getElementById('price-end');
+
+    if (priceStart) priceStart.value = '0';
+    if (priceEnd) priceEnd.value = '165 760';
+
+    if (ratingFilter && ratingFilter.noUiSlider) {
+      ratingFilter.noUiSlider.set([0, 165760]);
+    }
+
+    closeAllColumns();
+  }
+
+  if (resetButton) {
+    resetButton.addEventListener('click', resetFilter);
+  }
+
+  let isRestoring = false;
+
+  window.addEventListener('resize', function () {
+    const isDesktopNow = isDesktop();
+    const isMobileNow = isMobile();
+
+    const currentActive = getActiveColumnIndex();
+
+    if (isMobileNow) {
+      saveCurrentState();
+      closeAllColumns();
+    }
+
+    if (isDesktopNow) {
+      resetSystemSpollers();
+
+      if (activeColumnIndex !== null && !isRestoring) {
+        isRestoring = true;
+        setTimeout(() => {
+          const currentActive = getActiveColumnIndex();
+          if (currentActive === null) {
+            openColumn(activeColumnIndex);
+          } else if (currentActive !== activeColumnIndex) {
+            closeAllColumns();
+            setTimeout(() => {
+              openColumn(activeColumnIndex);
+            }, 50);
+          }
+          isRestoring = false;
+        }, 150);
+      }
     }
   });
 
-  let resizeTimer;
-  window.addEventListener('resize', function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function () {
-      if (!isMobile() && document.documentElement.classList.contains('filter-open')) {
-        closeFilter();
+  window.addEventListener('orientationchange', function () {
+    setTimeout(() => {
+      const isDesktopNow = isDesktop();
+
+      if (isDesktopNow) {
+        resetSystemSpollers();
+
+        if (activeColumnIndex !== null && !isRestoring) {
+          isRestoring = true;
+          setTimeout(() => {
+            const currentActive = getActiveColumnIndex();
+            if (currentActive === null) {
+              openColumn(activeColumnIndex);
+            }
+            isRestoring = false;
+          }, 200);
+        }
+      } else {
+        saveCurrentState();
+        closeAllColumns();
       }
-    }, 200);
+    }, 300);
   });
 
-  filterBody.addEventListener('click', function (e) {
-    e.stopPropagation();
+  if (isDesktop()) {
+    resetSystemSpollers();
+  }
+
+  closeAllColumns();
+  closeMobileFilter();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  initDesktopFilter();
+});
+
+//========================================================================================================================================================
+
+//Количество
+function formQuantity() {
+  document.addEventListener("click", function (e) {
+    let targetElement = e.target;
+    if (targetElement.closest('[data-quantity-plus]') || targetElement.closest('[data-quantity-minus]')) {
+      const quantityElement = targetElement.closest('[data-quantity]');
+      const valueElement = quantityElement.querySelector('input[type="text"]');
+      let value = parseInt(valueElement.value) || 0;
+
+      if (targetElement.closest('[data-quantity-plus]')) {
+        value++;
+        if (quantityElement.dataset.quantityMax && +quantityElement.dataset.quantityMax < value) {
+          value = quantityElement.dataset.quantityMax;
+        }
+      } else {
+        value--;
+        if (quantityElement.dataset.quantityMin) {
+          if (+quantityElement.dataset.quantityMin > value) {
+            value = quantityElement.dataset.quantityMin;
+          }
+        } else if (value < 1) {
+          value = 1;
+        }
+      }
+      valueElement.value = value;
+    }
   });
 }
+formQuantity();
