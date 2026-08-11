@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Заказ оформлен</title>
+    {% include 'blocks/head.njk' %}
+</head>
+
+<body class="preload mp">
+    <div class="main-wrapper-outer">
+        {% include 'blocks/header.njk' %}
+        <main class="main">
+
+            <div class="block-order-placed">
+                <div class="container">
+                    <div class="block-order-placed__content">
+                        <div class="block-order-placed__top">
+                            <div class="block-order-placed__icon">
+                                <svg aria-hidden="true" width="44" height="39">
+                                    <use xlink:href="img/sprite.svg#check1"></use>
+                                </svg>
+                            </div>
+                            <h1 class="title1">Спасибо за ваш заказ!</h1>
+                        </div>
+                        <div class="block-order-placed__body">
+                            <div class="block-order-placed__titles">
+                                <div class="title3">
+                                    Номер заказа: #5772
+                                </div>
+                                <p>
+                                    Вы будете перенаправлены на защищённую страницу банка для оплаты. После оплаты мы
+                                    начнём обработку вашего заказа
+                                </p>
+                            </div>
+                            <div class="block-order-placed__buttons">
+                                <a href="./" class="btn btn-white">Вернуться в каталог</a>
+                                <a href="./" class="btn">Перейти в личный кабинет</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        {% include 'blocks/footer.njk' %}
+    </div>
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Личный кабинет - история (нулевое состояние)</title>
+    {% include 'blocks/head.njk' %}
+</head>
+
+<body class="preload mp">
+    <div class="main-wrapper-outer">
+        {% include 'blocks/header.njk' %}
+        <main class="main">
+
+            <div class="breadcrumbs">
+                <div class="container">
+                    <ul>
+                        <li>
+                            <a href="#" class="home">
+                                <svg aria-hidden="true" width="16" height="14">
+                                    <use xlink:href="img/sprite.svg#home"></use>
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./">Личный кабинет</a>
+                        </li>
+                        <li><span>История заказов</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="block-cabinet">
+                <div class="container">
+                    <div class="block-cabinet__content">
+                        <div class="block-cabinet-menu">
+                            <div class="block-cabinet-menu__top">
+                                <div class="block-cabinet-menu__name">
+                                    Здравствуйте,<br> Александр Иванович
+                                </div>
+                                <p>
+                                    Добро пожаловать в ваш личный кабинет
+                                </p>
+                            </div>
+                            <ul>
+                                <li>
+                                    <a href="./">
+                                        <div class="block-cabinet-menu__icon">
+                                            <svg aria-hidden="true" width="18" height="18">
+                                                <use xlink:href="img/sprite.svg#user"></use>
+                                            </svg>
+                                        </div>
+                                        <span>Мой профиль</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="./" class="active">
+                                        <div class="block-cabinet-menu__icon">
+                                            <svg aria-hidden="true" width="20" height="18">
+                                                <use xlink:href="img/sprite.svg#history"></use>
+                                            </svg>
+                                        </div>
+                                        <span>История заказов</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="./">
+                                        <div class="block-cabinet-menu__icon">
+                                            <svg aria-hidden="true" width="20" height="20">
+                                                <use xlink:href="img/sprite.svg#map2"></use>
+                                            </svg>
+                                        </div>
+                                        <span>Мои адреса</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="./">
+                                        <div class="block-cabinet-menu__icon">
+                                            <svg aria-hidden="true" width="18" height="17">
+                                                <use xlink:href="img/sprite.svg#heart"></use>
+                                            </svg>
+                                        </div>
+                                        <span>Избранное</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="./">
+                                        <div class="block-cabinet-menu__icon">
+                                            <svg aria-hidden="true" width="16" height="20">
+                                                <use xlink:href="img/sprite.svg#password"></use>
+                                            </svg>
+                                        </div>
+                                        <span>Смена пароля</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="./">
+                                        <div class="block-cabinet-menu__icon">
+                                            <svg aria-hidden="true" width="18" height="17">
+                                                <use xlink:href="img/sprite.svg#news"></use>
+                                            </svg>
+                                        </div>
+                                        <span>Подписка на новости</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <a href="./" class="btn btn-blue-border">Выйти</a>
+                        </div>
+                        <div class="block-cabinet__body">
+                            <div class="block-cabinet__top">
+                                <h1 class="title1">
+                                    История заказов
+                                </h1>
+                                <p>
+                                    Всего заказов: <span>0</span>
+                                </p>
+                            </div>
+                            <div class="block-cabinet-zero">
+                                <div class="block-cabinet-zero__body">
+                                    <div class="block-cabinet-zero__icon">
+                                        <svg aria-hidden="true" width="20" height="24">
+                                            <use xlink:href="img/sprite.svg#cart"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="block-cabinet-zero__title">
+                                        Вы еще не совершали покупок в нашем магазине
+                                    </div>
+                                </div>
+                                <a href="./" class="btn">Перейти в каталог</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        {% include 'blocks/footer.njk' %}
+    </div>
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>

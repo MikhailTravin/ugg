@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Оформление заказа2</title>
+    {% include 'blocks/head.njk' %}
+</head>
+
+<body class="preload mp">
+    <div class="main-wrapper-outer">
+        {% include 'blocks/header.njk' %}
+        <main class="main">
+
+            <div class="block-order">
+                <div class="container">
+                    <a href="./" class="back">
+                        <div class="back__arrow">
+                            <svg aria-hidden="true" width="10" height="15">
+                                <use xlink:href="img/sprite.svg#arrow1"></use>
+                            </svg>
+                        </div>
+                        <span>Вернуться в корзину</span>
+                    </a>
+                    <div class="block-order__top">
+                        <h1 class="title1">Оформление заказа</h1>
+                        <div class="block-order__steps">
+                            <div class="block-order__step filled">
+                                <div class="block-order__icon">
+                                    <svg aria-hidden="true" width="16" height="14">
+                                        <use xlink:href="img/sprite.svg#check1"></use>
+                                    </svg>
+                                </div>
+                                <div class="block-order__title">
+                                    Вход
+                                </div>
+                                <div class="block-order__line"></div>
+                            </div>
+                            <div class="block-order__step active">
+                                <div class="block-order__icon">
+                                    2
+                                </div>
+                                <div class="block-order__title">
+                                    Контакты
+                                </div>
+                                <div class="block-order__line"></div>
+                            </div>
+                            <div class="block-order__step">
+                                <div class="block-order__icon">
+                                    3
+                                </div>
+                                <div class="block-order__title">
+                                    Адрес
+                                </div>
+                                <div class="block-order__line"></div>
+                            </div>
+                            <div class="block-order__step">
+                                <div class="block-order__icon">
+                                    4
+                                </div>
+                                <div class="block-order__title">
+                                    Доставка
+                                </div>
+                                <div class="block-order__line"></div>
+                            </div>
+                            <div class="block-order__step">
+                                <div class="block-order__icon">
+                                    5
+                                </div>
+                                <div class="block-order__title">
+                                    Оплата
+                                </div>
+                                <div class="block-order__line"></div>
+                            </div>
+                            <div class="block-order__step">
+                                <div class="block-order__icon">
+                                    6
+                                </div>
+                                <div class="block-order__title">
+                                    Подтверждение
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form action="#" class="block-order__content">
+                        <div class="block-order__titles">
+                            <div class="title3">
+                                Контактная информация
+                            </div>
+                            <p>
+                                Заполните данные для связи и доставки
+                            </p>
+                        </div>
+                        <div class="block-order__body">
+                            <div class="form">
+                                <div class="form__inputs">
+                                    <div class="form__input">
+                                        <label for="name1">Имя и Фамилия <span>*</span></label>
+                                        <input id="name1" data-required autocomplete="off" type="text" name="form[]"
+                                            placeholder="Иван Иванов" class="input">
+                                    </div>
+                                    <div class="form__input">
+                                        <label for="email1">Email <span>*</span> <span class="grey">(Для отправки
+                                                электронного чека и трек-номера)</span></label>
+                                        <input id="email1" data-required autocomplete="off" type="text" name="form[]"
+                                            placeholder="your@email.ru" class="input">
+                                    </div>
+                                    <div class="form__input">
+                                        <label for="phone1">Телефон <span>*</span></label>
+                                        <input id="phone1" data-required autocomplete="off" type="text" name="form[]"
+                                            placeholder="+7 (___) ___-__-__" class="input telephone">
+                                    </div>
+                                    <div class="form__input">
+                                        <label for="city1">Город <span>*</span></label>
+                                        <select id="city1" name="form[]" class="select">
+                                            <option value="1" selected>Москва</option>
+                                            <option value="2">Москва №2</option>
+                                            <option value="3">Москва №3</option>
+                                            <option value="4">Москва №4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block-order__buttons">
+                            <a href="./" class="btn btn-grey">Назад</a>
+                            <button type="submit" class="btn">Продолжить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </main>
+        {% include 'blocks/footer.njk' %}
+    </div>
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Личный кабинет - избранное (для
+        неавторизованных)</title>
+    {% include 'blocks/head.njk' %}
+</head>
+
+<body class="preload mp">
+    <div class="main-wrapper-outer">
+        {% include 'blocks/header.njk' %}
+        <main class="main">
+
+            <div class="breadcrumbs">
+                <div class="container">
+                    <ul>
+                        <li>
+                            <a href="#" class="home">
+                                <svg aria-hidden="true" width="16" height="14">
+                                    <use xlink:href="img/sprite.svg#home"></use>
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./">Личный кабинет</a>
+                        </li>
+                        <li><span>Избранное</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="block-cabinet">
+                <div class="container">
+                    <div class="block-cabinet__content">
+                        <div class="block-cabinet__body">
+                            <div class="block-favourites">
+                                <div class="block-favourites__body">
+                                    <div class="block-cabinet__top">
+                                        <h1 class="title1">
+                                            Избранное
+                                        </h1>
+                                        <p>
+                                            Чтобы сохранить список желаний на всех ваших устройствах, пожалуйста
+                                        </p>
+                                    </div>
+                                    <div class="block-favourites__buttons">
+                                        <a href="./" class="btn">войдите в личный кабинет</a>
+                                        <span>или</span>
+                                        <a href="./" class="btn btn-blue">Зарегистрируйтесь</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        {% include 'blocks/footer.njk' %}
+    </div>
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>
