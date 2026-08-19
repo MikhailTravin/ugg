@@ -1,5 +1,8 @@
 .footer {
     color: var(--ffffff);
+    @media (max-width: 768px) {
+        margin: 0px 0px 20px 0px;
+    }
 }
 .footer-top {
     background: #1e2029;
